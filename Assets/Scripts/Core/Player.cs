@@ -92,5 +92,10 @@ namespace EndlessPlane.Core
             _elapsedTime = 0.0f;
             _transform.rotation = rotation;
         }
+
+        public Vector3 GetPosition()
+        {
+            return _transform.position;
+        }
     }
 }

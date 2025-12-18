@@ -123,5 +123,20 @@ namespace EndlessPlane.Core.Environment
             _spriteRenderer.color = _spriteColor;
             _colorAlphaCallback?.Invoke(_spriteColor.a);
         }
+
+        public void NotifyWhenReachedTarget(Action targetReachedCallback)
+        {
+            _targetReachedCallback += targetReachedCallback;
+        }
+
+        public void NotifyColorAlpha(Action<float> colorAlphaCallback)
+        {
+            _colorAlphaCallback = colorAlphaCallback;
+        }
+
+        public void NotifyAssignObstacle(Action assignObstacleCallback)
+        {
+            _assignObstacleCallback = assignObstacleCallback;
+        }
     }
 }

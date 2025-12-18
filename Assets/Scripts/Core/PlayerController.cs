@@ -29,5 +29,10 @@ namespace EndlessPlane.Core
         {
             _player.Move(horizontalMove, verticalMove);
         }
+
+        public Vector3 GetPlayerPosition()
+        {
+            return _player.GetPosition();
+        }
     }
 }

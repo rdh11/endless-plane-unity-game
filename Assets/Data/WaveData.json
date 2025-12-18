@@ -1,0 +1,23 @@
+{
+  "wave-data": [
+    {
+      "obstacle-holder-ids": "2,4,6",
+      "total-sub-waves": 5,
+      "mandatory-obstacle-included": false,
+      "obstacles": [
+        {
+          "obstacle-id": "o_2",
+          "obstacle-pos": "0.21,-1.26"
+        },
+        {
+          "obstacle-id": "so_1",
+          "obstacle-pos": "0.53,-1.75"
+        },
+        {
+          "obstacle-id": "o_1",
+          "obstacle-pos": "-0.85,-1.42"
+        }
+      ]
+    }
+  ]
+}

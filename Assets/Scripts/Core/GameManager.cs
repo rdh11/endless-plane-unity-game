@@ -1,10 +1,15 @@
 using System.Collections.Generic;
+using EndlessPlane.Core.Environment;
+using Newtonsoft.Json.Linq;
 using UnityEngine;
 
 namespace EndlessPlane.Core
 {
     public class GameManager : MonoBehaviour
     {
+        [SerializeField]
+        TextAsset _waveDataJson = null;
+
         public static GameManager Instance => s_instance;
         static GameManager s_instance;
 
@@ -18,6 +23,19 @@ namespace EndlessPlane.Core
 
             // set target frame rate to 60
             Application.targetFrameRate = 60;
+        }
+
+        void Start()
+        {
+            // Parse game data
+            var boardData = WaveDataParser.Instance.ParseWaveData(JToken.Parse(_waveDataJson.text));
+            StartGame(boardData);
+        }
+
+        void StartGame(WaveData[] waveDatas)
+        {
+            ObstaclesManager.Instance.InitObstacleWaves(waveDatas);
+            ObstaclesManager.Instance.LoadObstacles = true;
         }
 
         // Update is called once per frame
