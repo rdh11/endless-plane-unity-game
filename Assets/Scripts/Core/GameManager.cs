@@ -13,6 +13,8 @@ namespace EndlessPlane.Core
         public static GameManager Instance => s_instance;
         static GameManager s_instance;
 
+        public bool GameStarted { get => _gameStarted; set => _gameStarted = value; }
+
         List<IUpdateable> _updateables;
         float _deltaTime;
         bool _gameStarted = true;
@@ -36,6 +38,14 @@ namespace EndlessPlane.Core
         {
             ObstaclesManager.Instance.InitObstacleWaves(waveDatas);
             ObstaclesManager.Instance.LoadObstacles = true;
+
+            GameOverHandler.Instance.NotifyGameOver(() =>
+            {
+                // Debug.LogError("Game Over");
+                _gameStarted = false;
+                ObstaclesManager.Instance.LoadObstacles = false;
+                GameOverHandler.Instance.ShowGameOverScreen();
+            });
         }
 
         // Update is called once per frame

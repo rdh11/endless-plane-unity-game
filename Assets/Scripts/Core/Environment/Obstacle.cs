@@ -34,6 +34,7 @@ namespace EndlessPlane.Core.Environment
         Color _materialColor;
         Quaternion _initialRotation;
         bool _isAvailable = true;
+        protected bool _isCollided;
 
         protected virtual void Start()
         {
@@ -46,12 +47,14 @@ namespace EndlessPlane.Core.Environment
         {
             _transform.localPosition = new Vector3(pos.x, pos.y, _forwardSpawn);
             _transform.localRotation = _initialRotation;
+            ResetCollisionState();
         }
 
         public virtual void ResetPosition(Vector3 position)
         {
             _transform.localPosition = position;
             _transform.localRotation = _initialRotation;
+            CheckCollisionState();
         }
 
         public void SetParent(Transform transform)
@@ -69,6 +72,31 @@ namespace EndlessPlane.Core.Environment
         public void Activate(bool status)
         {
             _gameObject.SetActive(status);
+        }
+
+        public void CollidedWithPlayer()
+        {
+            _isCollided = true;
+            HandleCollisionWithPlayer();
+        }
+
+        protected virtual void HandleCollisionWithPlayer()
+        {
+            Activate(false);
+            GameCollisionHandler.Instance.HandleEnemyCollision();
+        }
+
+        protected virtual void ResetCollisionState()
+        {
+            _isCollided = false;
+        }
+
+        protected virtual void CheckCollisionState()
+        {
+            if (!_isCollided)
+            {
+                ScoreManager.Instance.AddScore();
+            }
         }
     }
 }

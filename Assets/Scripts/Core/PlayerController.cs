@@ -34,5 +34,10 @@ namespace EndlessPlane.Core
         {
             return _player.GetPosition();
         }
+
+        public void HidePlayer()
+        {
+            _player.HidePlayer();
+        }
     }
 }

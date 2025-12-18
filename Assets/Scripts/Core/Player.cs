@@ -97,5 +97,10 @@ namespace EndlessPlane.Core
         {
             return _transform.position;
         }
+
+        public void HidePlayer()
+        {
+            _transform.gameObject.SetActive(false);
+        }
     }
 }
