@@ -21,16 +21,19 @@ namespace EndlessPlane.Core.UI
 
         public void OnClick_PlayButton()
         {
+            SoundManager.Instance.PlayButtonSFX();
             MainMenuManager.Instance.HandlePlay();
         }
 
         public void OnClick_ControlsButton()
         {
+            SoundManager.Instance.PlayButtonSFX();
             MainMenuManager.Instance.HandleControls();
         }
 
         public void OnClick_ControlsCrossButton()
         {
+            SoundManager.Instance.PlayButtonSFX();
             _controlsPanel.SetActive(false);
         }
     }

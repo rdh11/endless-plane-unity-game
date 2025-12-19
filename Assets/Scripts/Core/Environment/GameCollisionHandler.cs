@@ -20,6 +20,7 @@ namespace EndlessPlane.Core.Environment
 
         public void HandleEnemyCollision()
         {
+            SoundManager.Instance.PlayObstacleHitSFX();
             _playerCollisionCallback?.Invoke();
             _cameraShakeController.ShakeCamera();
         }

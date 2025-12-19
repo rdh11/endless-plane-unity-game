@@ -29,6 +29,7 @@ namespace EndlessPlane.Core.UI
 
         public void OnClick_ResumeButton()
         {
+            SoundManager.Instance.PlayButtonSFX();
             HideUI(false);
         }
     }

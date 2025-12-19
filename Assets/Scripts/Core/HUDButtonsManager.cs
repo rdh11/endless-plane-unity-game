@@ -20,6 +20,7 @@ namespace EndlessPlane.Core
         public void HandlePause()
         {
             GameManager.Instance.GameStarted = false;
+            SoundManager.Instance.Mute();
             _uiPausePanel.ShowUI(isReplay =>
             {
                 // Debug.Log("isReplay: " + isReplay);
@@ -28,6 +29,7 @@ namespace EndlessPlane.Core
                     // load current scene
                     SceneManager.LoadScene(0);
                 }
+                SoundManager.Instance.UnMute();
                 GameManager.Instance.GameStarted = !isReplay;
             });
         }

@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using EndlessPlane.Core.Environment;
 using EndlessPlane.Core.UI;
 using UnityEngine;
@@ -40,6 +41,7 @@ namespace EndlessPlane.Core
 
         public void ShowGameOverScreen()
         {
+            StartCoroutine(Coroutine_StopSoundAfterDelay());
             _uiGameOver.ShowGameOverScreen(() =>
             {
                 // load current scene
@@ -47,9 +49,10 @@ namespace EndlessPlane.Core
             });
         }
 
-        public void UpdateGameOver()
+        IEnumerator Coroutine_StopSoundAfterDelay()
         {
-            TriggerGameOverCallback();
+            yield return new WaitForSeconds(2.0f);
+            SoundManager.Instance.StopAudios();
         }
 
         void TriggerGameOverCallback()

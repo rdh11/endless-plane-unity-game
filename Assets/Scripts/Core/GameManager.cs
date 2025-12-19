@@ -34,6 +34,8 @@ namespace EndlessPlane.Core
             ObstaclesManager.Instance.InitObstacleWaves(waveDatas);
             ObstaclesManager.Instance.LoadObstacles = true;
             _gameStarted = true;
+            // play bgm
+            SoundManager.Instance.PlayBGMusic();
 
             GameOverHandler.Instance.NotifyGameOver(() =>
             {
