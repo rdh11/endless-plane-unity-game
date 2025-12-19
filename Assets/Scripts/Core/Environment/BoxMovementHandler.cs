@@ -99,7 +99,7 @@ namespace EndlessPlane.Core.Environment
         public void NotifyMovementStatus(MovableBox movableBox, Action moveCallback)
         {
             _isNotifyMovementStatus = true;
-            if (_waitingBox != null && _waitingBox.GetPosition().z >= 18f)
+            if (_waitingBox != null && _waitingBox.GetPosition().z >= 36f)  // this is hard coded - last movables z-value
             {
                 if (_waitingBoxes == null)
                     _waitingBoxes = new Queue<MovableBox>();
