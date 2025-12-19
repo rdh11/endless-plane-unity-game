@@ -17,7 +17,7 @@ namespace EndlessPlane.Core
 
         List<IUpdateable> _updateables;
         float _deltaTime;
-        bool _gameStarted = true;
+        bool _gameStarted;
 
         void Awake()
         {
@@ -27,17 +27,13 @@ namespace EndlessPlane.Core
             Application.targetFrameRate = 60;
         }
 
-        void Start()
+        public void StartGame()
         {
             // Parse game data
-            var boardData = WaveDataParser.Instance.ParseWaveData(JToken.Parse(_waveDataJson.text));
-            StartGame(boardData);
-        }
-
-        void StartGame(WaveData[] waveDatas)
-        {
+            var waveDatas = WaveDataParser.Instance.ParseWaveData(JToken.Parse(_waveDataJson.text));
             ObstaclesManager.Instance.InitObstacleWaves(waveDatas);
             ObstaclesManager.Instance.LoadObstacles = true;
+            _gameStarted = true;
 
             GameOverHandler.Instance.NotifyGameOver(() =>
             {
